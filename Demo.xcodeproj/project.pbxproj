@@ -14,6 +14,7 @@
 		C46A2F4D223A039600483C80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C46A2F4B223A039600483C80 /* LaunchScreen.storyboard */; };
 		C46A2F50223A039600483C80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C46A2F4F223A039600483C80 /* main.m */; };
 		C46A2F58223A043300483C80 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C46A2F57223A043300483C80 /* DemoViewController.m */; };
+		C4BB47B0225AFBF100E48019 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BB47AF225AFBF100E48019 /* CalculatorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		C46A2F4F223A039600483C80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C46A2F56223A043300483C80 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		C46A2F57223A043300483C80 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		C4BB47AE225AFBF100E48019 /* CalculatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorViewController.h; sourceTree = "<group>"; };
+		C4BB47AF225AFBF100E48019 /* CalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,7 @@
 		C46A2F3F223A039400483C80 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				C4BB47AD225AFBE300E48019 /* Calculator */,
 				C46A2F56223A043300483C80 /* DemoViewController.h */,
 				C46A2F57223A043300483C80 /* DemoViewController.m */,
 				C46A2F40223A039400483C80 /* AppDelegate.h */,
@@ -93,6 +97,15 @@
 				C46A2F4F223A039600483C80 /* main.m */,
 			);
 			path = Demo;
+			sourceTree = "<group>";
+		};
+		C4BB47AD225AFBE300E48019 /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				C4BB47AE225AFBF100E48019 /* CalculatorViewController.h */,
+				C4BB47AF225AFBF100E48019 /* CalculatorViewController.m */,
+			);
+			path = Calculator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +206,7 @@
 			files = (
 				C46A2F50223A039600483C80 /* main.m in Sources */,
 				C46A2F42223A039400483C80 /* AppDelegate.m in Sources */,
+				C4BB47B0225AFBF100E48019 /* CalculatorViewController.m in Sources */,
 				C46A2F58223A043300483C80 /* DemoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

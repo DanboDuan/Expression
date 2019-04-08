@@ -15,7 +15,7 @@ NSString * const CellReuseIdentifier = @"UITableViewCell_ri";
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *actionVCName;
-@property (nonatomic, assign) NSInteger actionVC;
+@property (nonatomic, assign) NSInteger action;
 
 @end
 
@@ -30,8 +30,8 @@ static NSArray *testFeedList() {
 
     [array addObject:({
         FeedModel *model = [FeedModel new];
-        model.title = @"Demo";
-        model.actionVCName = @"";
+        model.title = @"Calculator";
+        model.actionVCName = @"CalculatorViewController";
         model;
     })];
 

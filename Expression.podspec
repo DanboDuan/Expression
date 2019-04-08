@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint BDAutoTracker.podspec' to ensure this is a
+# Be sure to run `pod lib lint Expression.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -26,8 +26,19 @@ TODO: Add long description of the pod here.
   s.author           = { 'bob' => 'bob170131@gmail.com' }
   s.source           = { :git => 'https://github.com/DanboDuan/Expression.git', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
-  s.source_files = 'Expression/**/*.{h,m}'
-  s.public_header_files = 'Expression/*.h'
   s.frameworks = 'Foundation'
+  s.default_subspec = 'Core'
+  s.requires_arc = true
+
+  s.subspec 'Utility' do |utility|
+        utility.source_files = 'Expression/Utility/**/*.{h,m,c}'
+        utility.public_header_files = 'Expression/Utility/Header/*.h'
+  end
+
+  s.subspec 'Core' do |core|
+      core.source_files = 'Expression/Core/**/*.{h,m,c}'
+      core.dependency 'Expression/Utility'
+      core.public_header_files = 'Expression/Core/Header/*.h'
+  end
 
 end
