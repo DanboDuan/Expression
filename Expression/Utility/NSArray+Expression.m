@@ -9,7 +9,7 @@
 
 @implementation NSArray (Expression)
 
-- (ExpArrayMap) map {
+- (ExpArrayMap)map {
     __weak NSArray* warray = self;
     return ^NSArray*(ExpArrayMapOperator mo) {
         NSMutableArray *results = [NSMutableArray array];
@@ -17,11 +17,11 @@
         for(id object in this) {
             [results addObject:mo(object)];
         }
-        return [results copy];
+        return results;
     };
 }
 
-- (ExpArrayFilter) filter {
+- (ExpArrayFilter)filter {
     __weak NSArray* warray = self;
     return ^NSArray*(ExpArrayFilterOperator fo) {
         __strong NSArray *this = warray;
@@ -31,11 +31,11 @@
                 [results addObject:object];
             }
         }
-        return [results copy];
+        return results;
     };
 }
 
-- (ExpArrayReduce) reduce {
+- (ExpArrayReduce)reduce {
     __weak NSArray* warray = self;
     return ^id(id initial, ExpArrayReduceOperator ro) {
         __strong NSArray *array = warray;
@@ -43,11 +43,12 @@
         for(id object in array) {
             result = ro(result, object);
         }
+
         return result;
     };
 }
 
-- (ExpArrayFlatmap) flatmap {
+- (ExpArrayFlatmap)flatmap {
     __weak NSArray* warray = self;
     return ^NSArray*(ExpArrayFlatmapOperator fmo) {
         NSMutableArray *results = [NSMutableArray array];
@@ -57,11 +58,11 @@
             if(newArray == nil) continue;
             [results addObjectsFromArray:newArray];
         }
-        return [results copy];
+        return results;
     };
 }
 
-- (ExpArrayApply) apply {
+- (ExpArrayApply)apply {
     __weak NSArray* warray = self;
     return ^NSArray*(NSArray* operators) {
         NSMutableArray *array = [NSMutableArray array];
@@ -69,15 +70,15 @@
             __strong NSArray *this = warray;
             [array addObjectsFromArray:this.map(mo)];
         }
-        return [array copy];
+        return array;
     };
 }
 
-- (NSArray*) reverse {
+- (NSArray*)reverse {
     return self.reverseObjectEnumerator.allObjects;
 }
 
-- (NSArray*) flatten {
+- (NSArray*)flatten {
     NSMutableArray *results = [NSMutableArray array];
     for(id obj in self) {
         if([obj isKindOfClass:[NSArray class]]) {
@@ -86,10 +87,10 @@
             [results addObject:obj];
         }
     }
-    return [results copy];
+    return results;
 }
 
-- (ExpArrayJoin) join {
+- (ExpArrayJoin)join {
     __weak NSArray* warray = self;
     return ^NSString*(NSString *sep) {
         __strong NSArray *this = warray;
@@ -103,7 +104,7 @@
     };
 }
 
-- (ExpArrayForeach) foreach {
+- (ExpArrayForeach)foreach {
     __weak NSArray* warray = self;
     return ^(ExpArrayForeachOperator foreachOperator) {
         __strong NSArray *this = warray;

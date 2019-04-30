@@ -16,10 +16,9 @@ Pod::Spec.new do |s|
 #   * Try to keep it short, snappy and to the point.
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
+#   * tag => "v#{s.version}"
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = 'OC version of Expression'
 
   s.homepage         = 'https://github.com/DanboDuan/Expression'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
