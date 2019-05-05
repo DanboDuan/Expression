@@ -7,36 +7,10 @@
 //
 
 #import "DemoViewController.h"
+#import "FeedModel.h"
+#import "FeedLoader.h"
 
-NSString * const CellReuseIdentifier = @"UITableViewCell_ri";
-
-
-@interface FeedModel : NSObject
-
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *actionVCName;
-@property (nonatomic, assign) NSInteger action;
-
-@end
-
-@implementation FeedModel
-
-
-
-@end
-
-static NSArray *testFeedList() {
-    NSMutableArray *array = [NSMutableArray array];
-
-    [array addObject:({
-        FeedModel *model = [FeedModel new];
-        model.title = @"Calculator";
-        model.actionVCName = @"CalculatorViewController";
-        model;
-    })];
-
-    return array;
-}
+static NSString * const CellReuseIdentifier = @"UITableViewCell_ri";
 
 @interface DemoViewController ()
 
@@ -49,7 +23,7 @@ static NSArray *testFeedList() {
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellReuseIdentifier];
-    self.feedList = testFeedList();
+    self.feedList = [FeedLoader loadDemoPageFeedList];
     self.navigationItem.title = @"Demo";
 }
 

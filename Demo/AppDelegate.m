@@ -40,14 +40,14 @@
     NSString *s = [theString decomposedStringWithCanonicalMapping];
     NSLog(@"decomposed (%@) .length(%zd) %zd",s, s.length, [s lengthOfBytesUsingEncoding:NSUTF32StringEncoding] / 4);
     NSLog(@"precomposed (%@) .length(%zd) %zd",t, t.length, [t lengthOfBytesUsingEncoding:NSUTF32StringEncoding] / 4);
-    NSLog(@"precomposed %C ", [t characterAtIndex:0]);
+    NSLog(@"precomposed (%C) ", [t characterAtIndex:0]);
+    NSLog(@"decomposed (%C)", [s characterAtIndex:0]);
 
-    unichar chars = '\0';
     NSString *c = [[NSString stringWithFormat:@"%C",[t characterAtIndex:0]] decomposedStringWithCanonicalMapping];
-    NSString *d = [[NSString stringWithFormat:@"%C",chars] decomposedStringWithCanonicalMapping];
+
 
     NSLog(@"s contain %@ ", [s containsString:c] ?@"YES":@"NO");
-    NSLog(@"t contain %@ ", [t containsString:d] ?@"YES":@"NO");
+    NSLog(@"t contain %@ ", [t containsString:c] ?@"YES":@"NO");
 
     NSLog(@"theString(%@) theString.length(%zd) %zd",theString, theString.length, [theString lengthOfBytesUsingEncoding:NSUTF32StringEncoding] / 4);
 

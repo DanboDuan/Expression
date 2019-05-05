@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		479582C90E599DE9F9FDE57A /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E78BD560ED467942FE7E993 /* libPods-Demo.a */; };
+		C4115C7E2277FD6200FF9592 /* BenchmarkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4115C7D2277FD6200FF9592 /* BenchmarkUtils.m */; };
+		C4115C812277FD8F00FF9592 /* BenchmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4115C802277FD8F00FF9592 /* BenchmarkViewController.m */; };
+		C464238E227E767E00CAB83B /* FeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C464238D227E767E00CAB83B /* FeedModel.m */; };
+		C4642391227E76A800CAB83B /* FeedLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = C4642390227E76A800CAB83B /* FeedLoader.m */; };
+		C464239B227E7C3E00CAB83B /* PerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C464239A227E7C3E00CAB83B /* PerformanceTests.m */; };
+		C464239E227EDDBC00CAB83B /* SectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C464239D227EDDBC00CAB83B /* SectionModel.m */; };
 		C46A2F42223A039400483C80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C46A2F41223A039400483C80 /* AppDelegate.m */; };
 		C46A2F48223A039400483C80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C46A2F46223A039400483C80 /* Main.storyboard */; };
 		C46A2F4A223A039600483C80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C46A2F49223A039600483C80 /* Assets.xcassets */; };
@@ -21,6 +27,18 @@
 		3E78BD560ED467942FE7E993 /* libPods-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7BE6B3CF1D4BA9ED59DD76E /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		C1F5CE2F5B3D214D2361D92D /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		C4115C7C2277FD6200FF9592 /* BenchmarkUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BenchmarkUtils.h; sourceTree = "<group>"; };
+		C4115C7D2277FD6200FF9592 /* BenchmarkUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BenchmarkUtils.m; sourceTree = "<group>"; };
+		C4115C7F2277FD8F00FF9592 /* BenchmarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BenchmarkViewController.h; sourceTree = "<group>"; };
+		C4115C802277FD8F00FF9592 /* BenchmarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BenchmarkViewController.m; sourceTree = "<group>"; };
+		C464238C227E767E00CAB83B /* FeedModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedModel.h; sourceTree = "<group>"; };
+		C464238D227E767E00CAB83B /* FeedModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedModel.m; sourceTree = "<group>"; };
+		C464238F227E76A800CAB83B /* FeedLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedLoader.h; sourceTree = "<group>"; };
+		C4642390227E76A800CAB83B /* FeedLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedLoader.m; sourceTree = "<group>"; };
+		C4642399227E7C3E00CAB83B /* PerformanceTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerformanceTests.h; sourceTree = "<group>"; };
+		C464239A227E7C3E00CAB83B /* PerformanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerformanceTests.m; sourceTree = "<group>"; };
+		C464239C227EDDBC00CAB83B /* SectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectionModel.h; sourceTree = "<group>"; };
+		C464239D227EDDBC00CAB83B /* SectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectionModel.m; sourceTree = "<group>"; };
 		C46A2F3D223A039400483C80 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C46A2F40223A039400483C80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C46A2F41223A039400483C80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -64,6 +82,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C4115C7B2277FD3F00FF9592 /* Benchmark */ = {
+			isa = PBXGroup;
+			children = (
+				C4115C7C2277FD6200FF9592 /* BenchmarkUtils.h */,
+				C4115C7D2277FD6200FF9592 /* BenchmarkUtils.m */,
+				C4115C7F2277FD8F00FF9592 /* BenchmarkViewController.h */,
+				C4115C802277FD8F00FF9592 /* BenchmarkViewController.m */,
+				C4642399227E7C3E00CAB83B /* PerformanceTests.h */,
+				C464239A227E7C3E00CAB83B /* PerformanceTests.m */,
+			);
+			path = Benchmark;
+			sourceTree = "<group>";
+		};
+		C464238B227E766700CAB83B /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				C464238C227E767E00CAB83B /* FeedModel.h */,
+				C464238D227E767E00CAB83B /* FeedModel.m */,
+				C464238F227E76A800CAB83B /* FeedLoader.h */,
+				C4642390227E76A800CAB83B /* FeedLoader.m */,
+				C464239C227EDDBC00CAB83B /* SectionModel.h */,
+				C464239D227EDDBC00CAB83B /* SectionModel.m */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
 		C46A2F34223A039400483C80 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +129,8 @@
 		C46A2F3F223A039400483C80 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				C464238B227E766700CAB83B /* Demo */,
+				C4115C7B2277FD3F00FF9592 /* Benchmark */,
 				C4BB47AD225AFBE300E48019 /* Calculator */,
 				C46A2F56223A043300483C80 /* DemoViewController.h */,
 				C46A2F57223A043300483C80 /* DemoViewController.m */,
@@ -205,8 +251,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C46A2F50223A039600483C80 /* main.m in Sources */,
+				C4115C7E2277FD6200FF9592 /* BenchmarkUtils.m in Sources */,
+				C4642391227E76A800CAB83B /* FeedLoader.m in Sources */,
+				C464238E227E767E00CAB83B /* FeedModel.m in Sources */,
+				C4115C812277FD8F00FF9592 /* BenchmarkViewController.m in Sources */,
+				C464239E227EDDBC00CAB83B /* SectionModel.m in Sources */,
 				C46A2F42223A039400483C80 /* AppDelegate.m in Sources */,
 				C4BB47B0225AFBF100E48019 /* CalculatorViewController.m in Sources */,
+				C464239B227E7C3E00CAB83B /* PerformanceTests.m in Sources */,
 				C46A2F58223A043300483C80 /* DemoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

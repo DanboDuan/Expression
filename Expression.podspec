@@ -31,7 +31,6 @@ Pod::Spec.new do |s|
 
   s.subspec 'Utility' do |utility|
         utility.source_files = 'Expression/Utility/**/*.{h,m,c}'
-        utility.public_header_files = 'Expression/Utility/Header/*.h'
   end
 
   s.subspec 'Core' do |core|
