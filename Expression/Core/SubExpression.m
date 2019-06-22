@@ -12,6 +12,9 @@
 #import "NSArray+Expression.h"
 #import "ExpressionUtility.h"
 #import "Expression.h"
+#import "UnicodeScalarView.h"
+#import "NSString+UnicodeScalarView.h"
+#import "Expression+Operator.h"
 
 @interface SubExpression ()
 
@@ -97,7 +100,7 @@
                     [values addObject:value];
                 }
                 if (!errorOut) {
-                    return self.evaluator(values);
+                    return self.evaluator(values, error);
                 }
                 // return self.evaluator(self.subs.map(^ id (SubExpression * object) { return [object evaluate:error];}));
             }
@@ -124,8 +127,8 @@
     return [NSSet set];
 }
 
-- (SubExpression *)optimizedWithImpureSymbols:(SymbolEvaluator (^) (Symbol * symbol))impureSymbols
-                                  pureSymbols:(SymbolEvaluator (^) (Symbol * symbol))pureSymbols {
+- (SubExpression *)optimizedWithImpureSymbols:(SymbolEvaluatorForSymbol)impureSymbols
+                                  pureSymbols:(SymbolEvaluatorForSymbol)pureSymbols {
     switch (self.type) {
         case EXSubExpressionTypeError:
         case EXSubExpressionTypeLiteral:
@@ -151,7 +154,7 @@
             }
 
             if (fn) {
-                NSNumber *result = fn(argValues);
+                NSNumber *result = fn(argValues, nil);
                 return [SubExpression literalWithValue:result];
             }
             
@@ -172,10 +175,72 @@
             if (![self isOperand]) {
                 return self.symbol.escapedName;
             }
-            // todo
+            Symbol *symbol = self.symbol;
+            SubExpression *arg = self.subs.firstObject;
+            NSString *description = arg.description;
+            switch (symbol.type) {
+                case EXSymbolTypePrefix:
+                case EXSymbolTypePostfix: {
+                    if (arg.type == EXSubExpressionTypeError) {
+                        return [NSString stringWithFormat:@"(%@)%@",description, symbol.escapedName];
+                    }
+                    if (arg.type == EXSubExpressionTypeSymbol) {
+                        EXSymbolType argType = arg.symbol.type;
+                        if (argType == EXSymbolTypeInfix
+                            || argType == EXSymbolTypePostfix
+                            || [self needsSeparation:symbol.name from:description]) {
+                            return [NSString stringWithFormat:@"(%@)%@",description, symbol.escapedName];
+                        }
+                    }
+                    if (arg.type == EXSubExpressionTypeSymbol || arg.type == EXSubExpressionTypeLiteral) {
+                        return [NSString stringWithFormat:@"%@%@",description, symbol.escapedName];
+                    }
+                }
+                case EXSymbolTypeInfix: {
+                    NSString *name = symbol.name;
+                    if ([name isEqualToString:@","]) {
+                        return [NSString stringWithFormat:@"%@,%@",description, self.subs[1]];
+                    }
+                    if ([name isEqualToString:@"?:"] && self.subs.count == 3) {
+                        return [NSString stringWithFormat:@"%@ ? %@ : %@",description, self.subs[1], self.subs[2]];
+                    }
+                    if ([name isEqualToString:@"[]"]) {
+                        return [NSString stringWithFormat:@"%@[%@]",description, self.subs[1]];
+                    }
+
+                    if (arg.type == EXSubExpressionTypeSymbol) {
+                        EXSymbolType argType = arg.symbol.type;
+                        if (argType == EXSymbolTypeInfix && ![Expression isOperator:arg.symbol.name takesPrecedenceOver:name]){
+                            description = [NSString stringWithFormat:@"(%@)",description];
+                        }
+                    }
+
+                    SubExpression *rhs = self.subs[1];
+                    NSString *rhsDescription = rhs.description;
+                    if (rhs.type == EXSubExpressionTypeSymbol) {
+                        EXSymbolType argType = rhs.symbol.type;
+                        if (argType == EXSymbolTypeInfix && ![Expression isOperator:name takesPrecedenceOver:rhs.symbol.name]){
+                            rhsDescription = [NSString stringWithFormat:@"(%@)",rhsDescription];
+                        }
+                    }
+
+                    return [NSString stringWithFormat:@"%@%@%@",description,symbol.escapedName,rhsDescription];
+                }
+                case EXSymbolTypeVariable:
+                    return symbol.escapedName;
+                case EXSymbolTypeFunction:
+                    if ([symbol.name isEqualToString:@"[]"]) {
+                        return [NSString stringWithFormat:@"[%@]", [self arguments:self.subs]];
+                    }
+                    return [NSString stringWithFormat:@"%@(%@)", symbol.escapedName, [self arguments:self.subs]];
+                case EXSymbolTypeArray: {
+                    return [NSString stringWithFormat:@"%@[%@]", symbol.escapedName, [self arguments:self.subs]];
+                }
+            }
 
         }
     }
+
     return [NSString stringWithFormat:@"a"];
 }
 
@@ -188,6 +253,12 @@
 
         return object.description;
     }).join(@", ");
+}
+
+- (BOOL)needsSeparation:(NSString *)lhs from:(NSString *)rhs {
+    UnicodeScalarValue lhsLast = lhs.unicodeScalars.last;
+    UnicodeScalarValue rhsFirst = rhs.unicodeScalars.first;
+    return lhsLast == '.' || ([Expression isOperator:lhsLast] || lhsLast == '-') == ([Expression isOperator:rhsFirst] || rhsFirst == '-');
 }
 
 @end

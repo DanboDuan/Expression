@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, EXSymbolType) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Symbol : NSObject
+@interface Symbol : NSObject<NSCopying>
 
 @property (nonatomic, assign, readonly) EXSymbolType type;
 @property (nonatomic, copy, readonly) NSString *name;

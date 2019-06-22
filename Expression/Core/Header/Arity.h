@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger, EXArityType) {
     EXArityTypeAtLeast,
 };
 
-@interface Arity : NSObject
+@interface Arity : NSObject<NSCopying>
 
 @property (nonatomic, assign) EXArityType type;
 

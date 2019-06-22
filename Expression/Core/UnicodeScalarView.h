@@ -22,8 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) NSUInteger length;
 @property (nonatomic, readonly) NSString *scalarsString;
 
+@property (nonatomic, assign, readonly) NSUInteger startIndex;
+@property (nonatomic, assign, readonly) NSUInteger endIndex;
+
 @property (nonatomic, assign, readonly) BOOL isEmpty;
 @property (nonatomic, assign, readonly) UnicodeScalarValue first;
+@property (nonatomic, assign, readonly) UnicodeScalarValue last;
 
 + (instancetype)scalarViewWithString:(NSString *)scalarView;
 + (instancetype)scalarViewWithScalarView:(UnicodeScalarView *)scalarView;
@@ -35,8 +39,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)escapedIdentifier;
 
+- (UnicodeScalarView *)prefix:(NSUInteger)upTo;
+- (UnicodeScalarView *)suffix:(NSUInteger)from;
+
+#pragma mark - parse
 
 - (SubExpression *)parseSubExpression:(NSArray<NSString *> *)delimiters error:(NSError *__autoreleasing *)outError;
+- (SubExpression *)parseOperator;
 
 @end
 

@@ -11,6 +11,12 @@
 #import "NSString+UnicodeScalarView.h"
 #import "UnicodeScalarView.h"
 #import "UnicodeScalarRange.h"
+#import "Symbol.h"
+#import "Arity.h"
+#import "EXError.h"
+#import "Expression+Symbol.h"
+#import "SubExpression.h"
+
 
 @implementation Expression (Operator)
 
@@ -92,5 +98,19 @@
     return [UnicodeScalarRange isInIdentifierRange:character];
 }
 
++ (BOOL)isValidOperator:(NSString *)string {
+    UnicodeScalarView *characters = [UnicodeScalarView scalarViewWithString:string];
+    SubExpression *sub = [characters parseOperator];
+    if (sub.type == EXSubExpressionTypeSymbol) {
+        Symbol *symbol = sub.symbol;
+        if (symbol.type != EXSymbolTypeInfix
+            || [symbol.name isEqualToString:@"("]
+            || [symbol.name isEqualToString:@"["]) {
+            return NO;
+        }
+    }
+
+    return [characters isEmpty];
+}
 
 @end

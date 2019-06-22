@@ -83,6 +83,14 @@ static const UnicodeScalarValue UnicodeScalarsEmpty = '\0';
     return self.characters[self.startIndex];
 }
 
+- (UnicodeScalarValue)last {
+    if (self.isEmpty) {
+        return UnicodeScalarsEmpty;
+    }
+
+    return self.characters[self.endIndex - 1];
+}
+
 - (UnicodeScalarValue)popFirst {
     if (self.isEmpty) {
         return UnicodeScalarsEmpty;
@@ -421,7 +429,7 @@ static const UnicodeScalarValue UnicodeScalarsEmpty = '\0';
                 return;
             }
             NSString *op = lhs.symbol.name;
-            // todo ? check subs.cout?
+            // todo ? check subs.count?
             stack[i] = lhs.subs[0];
             SubExpression *insert = [SubExpression symbolWithSymbol:[Symbol postfix:op]
                                                                subs:@[]

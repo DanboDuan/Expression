@@ -18,6 +18,10 @@
 
 @implementation ParsedExpression
 
++ (instancetype)parsedExpressionWithRoot:(SubExpression *)root {
+    return [[self alloc] initWithSubExpression:root];
+}
+
 - (instancetype)initWithSubExpression:(SubExpression *)root {
     self = [super init];
     if (self) {

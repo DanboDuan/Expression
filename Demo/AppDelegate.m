@@ -51,7 +51,7 @@
 
     NSLog(@"theString(%@) theString.length(%zd) %zd",theString, theString.length, [theString lengthOfBytesUsingEncoding:NSUTF32StringEncoding] / 4);
 
-    [Expression Test];
+    
     return YES;
 }
 

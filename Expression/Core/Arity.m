@@ -23,6 +23,12 @@
     return self;
 }
 
+- (instancetype)copyWithZone:(nullable NSZone *)zone {
+    Arity *copyed = [[self.class allocWithZone:zone] initWithValue:self.rawValue type:self.type];
+
+    return copyed;
+}
+
 + (instancetype)any {
     static Arity *any = nil;
     static dispatch_once_t onceToken;

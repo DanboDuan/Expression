@@ -42,8 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isOperand;
 - (NSNumber *)evaluate:(NSError *__autoreleasing *)error;
 - (NSSet<Symbol *> *)symbols;
-- (SubExpression *)optimizedWithImpureSymbols:(SymbolEvaluator (^) (Symbol * symbol))impureSymbols
-                                  pureSymbols:(SymbolEvaluator (^) (Symbol * symbol))pureSymbols;
+- (SubExpression *)optimizedWithImpureSymbols:(SymbolEvaluatorForSymbol)impureSymbols
+                                  pureSymbols:(SymbolEvaluatorForSymbol)pureSymbols;
 
 @end
 

@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSSet<Symbol *> *symbols;
 @property (nonatomic, readonly) EXError *error;
+@property (nonatomic, strong, readonly) SubExpression *root;
 
++ (instancetype)parsedExpressionWithRoot:(SubExpression *)root;
 - (instancetype)initWithSubExpression:(SubExpression *)root;
 
 @end

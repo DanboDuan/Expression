@@ -30,6 +30,15 @@
     return self;
 }
 
+- (instancetype)copyWithZone:(nullable NSZone *)zone {
+    Symbol *copyed = [[self.class allocWithZone:zone] init];
+    copyed.name = [self.name copy];
+    copyed.type = self.type;
+    copyed.arity = [self.arity copy];
+    
+    return copyed;
+}
+
 - (NSUInteger)hash {
     return self.name.hash;
 }

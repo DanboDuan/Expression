@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)isOperator:(UnicodeScalarValue)character;
 + (BOOL)isIdentifierHead:(UnicodeScalarValue)character;
 + (BOOL)isIdentifier:(UnicodeScalarValue)character;
++ (BOOL)isValidOperator:(NSString *)string;
 
 @end
 
